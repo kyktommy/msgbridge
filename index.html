@@ -7,35 +7,15 @@
   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
   <link href="css/flat-ui.css" rel="stylesheet">
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/simplemodal.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.9.2/dropbox.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.9.2/dropbox.min.js"></script>
   <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script src="js/simple-modal.js"></script>
+  <script src="js/qr.min.js"></script>
 
-  <style>
-    * { box-sizing: border-box; }
-    a { text-decoration: none; } 
-    ul { list-style: none; }
-    body { margin-top: 30px; }
-
-    #upload-btn i { 
-      margin-right: 5px;
-    }
-
-    #file-textarea { 
-      margin-top: 10px;
-      height: 500px;
-      padding: 10px;
-      font-size: 25px;
-      border: 1px solid #2ECC71;
-    }
-
-    #file-textarea:focus { 
-      outline: none;
-      border: 1px solid #27AE60;
-    }
-
-  </style>
 </head>
 <body>
 
@@ -68,10 +48,12 @@
     </div>
 
     <div class="row">
-      <!-- <div contentEditable id="file-textarea" class="span12"> -->
-      <!--   here -->
-      <!-- </div> -->
-      <textarea id="file-textarea" class="span12"></textarea>
+      <div class="pull-right tool-box">
+        <a class="btn btn-primary">Add Item</a>
+        <a class="btn btn-primary">Clear All</a>
+      </div>
+      <ul class="list">
+      </ul>
     </div>
 
   </div>
