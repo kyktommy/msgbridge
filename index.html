@@ -1,65 +1,84 @@
 <!doctype html>
-<html>
+<html ng-app="app">
 
-<head>
-  <title>MsgBridge</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-  <link href="css/flat-ui.css" rel="stylesheet">
-  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/simplemodal.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
+  <head>
+    <title>MsgBridge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simplemodal.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.9.2/dropbox.min.js"></script>
-  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-  <script src="js/simple-modal.js"></script>
-  <script src="js/qr.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.9.2/dropbox.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="js/simple-modal.js"></script>
+    <script src="js/qr.min.js"></script>
 
-</head>
-<body>
+  </head>
+  <body>
 
-  <div class="container">
+    <div ng-controller="ListCtrl" class="container">
 
-    <div class="row">
-      <div class="navbar navbar-inverse">
-        <div class="navbar-inner">
-          <a href="#" class="brand">MsgBridge</a>
-          <ul class="nav">
-            <li>
-              <a href="#">Android app</a>
-            </li>
-          </ul>
-          <ul class="nav pull-right">
-            <li class="active">
-              <a id="upload-btn" href="#">
-                <i class="icon-cloud-upload icon-large"></i>
-                Upload
-              </a>
-            </li>
-          </ul>
+      <div class="row">
+        <div class="navbar navbar-inverse">
+          <div class="navbar-inner">
+            <a href="#" class="brand">
+              <i class="icon-hand-up"></i>
+              MsgBridge
+            </a>
+            <ul class="nav">
+              <li class="active"><a href="#">Welcome, {{name}}</a></li>
+              <li>
+                <a>Android app</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
 
-    <h1>Hello, <span id="db-name">Guest</span></h1>
-    <div class="row">
-      <h4 class="span3">Current Editing: <span id="db-filename"></span></h4>
-    </div>
-
-    <div class="row">
-      <div class="pull-right tool-box">
-        <a class="btn btn-primary">Add Item</a>
-        <a class="btn btn-primary">Clear All</a>
+      <div class="row">
+        <form class="well" ng-submit="addItem()">
+          <div class="control-group">
+            <input class="span8" id="input_text" type="text" ng-model="input_text" placeholder="Add something">
+            <a ng-click="addItem()" class="btn btn-primary">
+              <i class="icon-plus"></i>  
+              Add Item
+            </a>
+            <a ng-click="clearList()" class="btn btn-primary">
+              <i class="icon-trash"></i>
+              Clear All
+            </a>
+            <a ng-click ="uploadList()" class="btn btn-danger" href="#">
+              <i class="icon-cloud-upload icon-large"></i>
+              Upload
+            </a>
+          </div>
+        </form>
       </div>
-      <ul class="list">
-      </ul>
+
+      <div class="row">
+        <ul class="list">
+          <li ng-repeat="item in list" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}" class="list-item">
+            {{item.name}}
+            <a href="#my-modal" data-target="#my-modal" data-toggle="modal" class="show-qr btn btn-primary pull-right">
+              <i class="icon-qrcode"></i>
+              QR CODE
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
 
-  </div>
+    <div class="loading">
+      <i class="icon-time"></i>
+      Loading
+    </div>
 
-  <script src="js/app.js"></script>
+    <script src="js/app.js"></script>
 
-</body>
+  </body>
 
 </html>
