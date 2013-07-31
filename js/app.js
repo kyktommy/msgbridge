@@ -14,13 +14,15 @@ app.controller('ListCtrl', function($scope) {
   $scope.name = "Guest";
   $scope.file_name = "None";
   $scope.list = [];
-  $scope.input_text = "";
+  $scope.input_text;
 
   $scope.addItem = function() {
+    // Not empty
     if($scope.input_text.length != 0) {
       $scope.list.unshift({name: $scope.input_text});
+      $scope.uploadList();
     }
-    $scope.input_text = ""
+    $scope.input_text = "";
   };
 
   $scope.clearList = function() {
@@ -66,9 +68,9 @@ app.controller('ListCtrl', function($scope) {
     Loading.show();
     client.writeFile('/msg1.txt', value, 
         function(error, info) {
-          alert('uploaded'); 
+          Loading.hide();
+          Loading.flash("uploaded");
         });
-    Loading.hide();
   };
 
   var updateInfo = function(client) {
@@ -140,10 +142,13 @@ app.factory('DropboxService', function() {
 });
 
 var Loading = {
-  show: function(text) {
+  show: function() {
     $('.loading').fadeIn();
   },
   hide: function() {
     $('.loading').fadeOut();
+  },
+  flash: function() {
+    $('.loading').fadeIn(200).fadeOut(500);
   }
 };
